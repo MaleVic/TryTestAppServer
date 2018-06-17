@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "801510052405",
+    "firebase_url": "https://movieapp-c472a.firebaseio.com",
+    "project_id": "movieapp-c472a",
+    "storage_bucket": "movieapp-c472a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801510052405:android:dd8d5e46d1881927",
+        "android_client_info": {
+          "package_name": "com.example.gamesmannna.trytestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801510052405-3he9r8ipg6174spmflf6c7okkl08pr9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamesmannna.trytestapp",
+            "certificate_hash": "236188bd26f701a1c68b871077e0e85740a8b25f"
+          }
+        },
+        {
+          "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4R97a1CYvIOt_h5R6jnvrzqMPwgCXfMg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801510052405:android:80277064ae8b4732",
+        "android_client_info": {
+          "package_name": "com.example.gamesmannna.trytestappserver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801510052405-0hfq5qr0gmejfdio7q0p4a7bilp54kos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamesmannna.trytestappserver",
+            "certificate_hash": "236188bd26f701a1c68b871077e0e85740a8b25f"
+          }
+        },
+        {
+          "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4R97a1CYvIOt_h5R6jnvrzqMPwgCXfMg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801510052405-3d90mri97gc1lt8jaofh36c6sqip8mr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
