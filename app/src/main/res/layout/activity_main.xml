@@ -24,41 +24,24 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/SignInButton"
-        android:layout_width="221dp"
-        android:layout_height="92dp"
+        android:layout_width="264dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="34dp"
+        android:layout_marginTop="96dp"
         android:text="Вход"
-        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorLink="@android:color/darker_gray"
-        app:fButtonColor="@color/SignInButton"
-        app:shadowColor="@color/colorPrimaryDark"
-        app:shadowEnabled="true"
-        app:shadowHeight="5dp"
         app:cornerRadius="34dp"
+        app:fButtonColor="@color/SignInButton"
         app:layout_constraintBottom_toTopOf="@+id/SignUpButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSlogan" />
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/SignUpButton"
-        style="@android:style/Widget.DeviceDefault.Button.Small"
-        android:layout_width="221dp"
-        android:layout_height="92dp"
-        android:layout_marginBottom="117dp"
-        android:text="Регистрация"
-        android:textColor="@color/colorPrimaryDark"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:fButtonColor="@color/SignInButton"
+        app:layout_constraintTop_toBottomOf="@+id/txtSlogan"
         app:shadowColor="@color/colorPrimaryDark"
         app:shadowEnabled="true"
-        app:shadowHeight="5dp"
-        app:cornerRadius="34dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignInButton" />
+        app:shadowHeight="5dp" />
+
 
     <ImageView
         android:id="@+id/imageView7"
