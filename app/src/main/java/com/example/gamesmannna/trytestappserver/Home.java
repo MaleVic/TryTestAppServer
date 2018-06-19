@@ -3,6 +3,7 @@ package com.example.gamesmannna.trytestappserver;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.util.ULocale;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import info.hoang8f.widget.FButton;
@@ -258,7 +260,7 @@ public class Home extends AppCompatActivity
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, ""+clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Home.this, ""+clickItem.getName(), Toast.LENGTH_SHORT).show();
                         /*Intent movieList = new Intent(Home.this, MovieList.class);
                         movieList.putExtra("Category", adapter.getRef(position).getKey());
                         startActivity(movieList);*/
@@ -317,9 +319,123 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public boolean onContextItemSelected(MenuItem item){
+
+        if (item.getTitle().equals(Common.UPDATE))
+        {
+            showUpdateDialog(adapter.getRef(item.getOrder()).getKey(), (Category) adapter.getItem(item.getOrder()));
+        }
+
+        else  if (item.getTitle().equals(Common.DELETE))
+        {
+            deleteCategory(adapter.getRef(item.getOrder()).getKey());
+        }
+
+
+
+        return super.onContextItemSelected(item);
+    }
+
+    private void deleteCategory(String key) {
+        categories.child(key).removeValue();
+        Toast.makeText(this,"Удалено",Toast.LENGTH_SHORT).show();
+    }
+
+    private void showUpdateDialog(final String key, final Category item) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Home.this);
+        alertDialog.setTitle("Обновить категорию");
+        alertDialog.setMessage("Пожалуйста, добавьте информацию о категории");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View add_menu_layout = inflater.inflate(R.layout.add_new_menu_layout, null);
+
+        edtName = add_menu_layout.findViewById(R.id.edtName);
+        btnSelect = add_menu_layout.findViewById(R.id.btnSelect);
+        btnUpload = add_menu_layout.findViewById(R.id.btnUpload);
+
+        edtName.setText(item.getName());
+
+        btnSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseImage();
+            }
+        });
+
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeImage(item);
+            }
+        });
+
+
+        alertDialog.setView(add_menu_layout);
+        alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp);
+
+        alertDialog.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+
+                item.setName(edtName.getText().toString());
+                categories.child(key).setValue(item);
+
+            }
+        });
+        alertDialog.setNegativeButton("НЕТ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
+
+    private void changeImage(final Category item) {
+        if (saveUri != null)
+        {
+            final ProgressDialog mDialog = new ProgressDialog(this);
+            mDialog.setMessage("Обновляем...");
+            mDialog.show();
+
+            String imageName = UUID.randomUUID().toString();
+            final StorageReference imageFolder = storageReference.child("images/"+imageName);
+            imageFolder.putFile(saveUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            mDialog.dismiss();
+                            Toast.makeText(Home.this, "Обновлено", Toast.LENGTH_SHORT).show();
+                            imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    item.setImage(uri.toString());
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            mDialog.dismiss();
+                            Toast.makeText(Home.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            mDialog.setMessage("Обновлено "+progress+"%");
+                        }
+                    });
+
+        }
+    }
 }
+

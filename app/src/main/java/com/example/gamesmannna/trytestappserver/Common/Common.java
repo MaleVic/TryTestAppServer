@@ -8,4 +8,7 @@ import com.example.gamesmannna.trytestappserver.Model.User;
 
 public class Common {
     public static User currentUser;
+
+    public static final String UPDATE = "Обновить";
+    public static final String DELETE = "Удалить";
 }
